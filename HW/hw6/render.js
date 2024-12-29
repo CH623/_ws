@@ -66,9 +66,11 @@ export function layout(title, content) {
 export function list(posts) {
   let list = []
   for (let post of posts) {
+    const formattedDate = new Date(post.created_at).toLocaleString();
     list.push(`
     <li>
       <h2>${ post.title }</h2>
+      <p>Created at: ${formattedDate}</p>
       <p><a href="/post/${post.id}">Read post</a></p>
     </li>
     `)
@@ -100,5 +102,6 @@ export function show(post) {
   return layout(post.title, `
     <h1>${post.title}</h1>
     <pre>${post.body}</pre>
+    <p>Created at: ${formattedDate}</p>
   `)
 }
